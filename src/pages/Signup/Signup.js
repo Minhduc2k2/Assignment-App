@@ -69,7 +69,11 @@ function Signup() {
         <input type="file" required onChange={handleChange} />
       </label>
       {!isPending && <button className="btn">Signup</button>}
-      {isPending && <button className="btn">Loading...</button>}
+      {isPending && (
+        <button className="btn" disabled>
+          Loading...
+        </button>
+      )}
       {error && <button className="error">{error}</button>}
     </form>
   );
