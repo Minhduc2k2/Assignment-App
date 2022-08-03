@@ -7,21 +7,55 @@ import Project from "./pages/Project/Project";
 import Signup from "./pages/Signup/Signup";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
+import { useAuthContext } from "./hooks/useAuthContext";
 function App() {
+  const { user, authIsReady } = useAuthContext();
   return (
     <div className="App">
-      <Sidebar />
-      <div className="container">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/create" element={<Create />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/project" element={<Project />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </div>
+      {authIsReady && (
+        <>
+          {user && <Sidebar />}
+          <div className="container">
+            <Navbar />
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  (user && <Dashboard />) ||
+                  (!user && <Navigate to="/login" replace />)
+                }
+              />
+              <Route
+                path="/create"
+                element={
+                  (user && <Create />) ||
+                  (!user && <Navigate to="/login" replace />)
+                }
+              />
+              <Route
+                path="/project"
+                element={
+                  (user && <Project />) ||
+                  (!user && <Navigate to="/login" replace />)
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  (!user && <Login />) || (user && <Navigate to="/" replace />)
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  (!user && <Signup />) || (user && <Navigate to="/" replace />)
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
+        </>
+      )}
     </div>
   );
 }
