@@ -8,6 +8,7 @@ import Signup from "./pages/Signup/Signup";
 import Navbar from "./components/Navbar/Navbar";
 import Sidebar from "./components/Sidebar/Sidebar";
 import { useAuthContext } from "./hooks/useAuthContext";
+import OnlineUsers from "./components/OnlineUsers/OnlineUsers";
 function App() {
   const { user, authIsReady } = useAuthContext();
   return (
@@ -54,6 +55,7 @@ function App() {
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
+          {user && <OnlineUsers />}
         </>
       )}
     </div>
