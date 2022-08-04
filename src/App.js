@@ -34,7 +34,7 @@ function App() {
                 }
               />
               <Route
-                path="/project"
+                path="/projects/:id"
                 element={
                   (user && <Project />) ||
                   (!user && <Navigate to="/login" replace />)
