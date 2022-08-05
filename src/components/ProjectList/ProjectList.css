@@ -13,6 +13,7 @@
   text-decoration: none;
   color: inherit;
   width: 220px;
+  margin-top: 20px;
 }
 .project-list a:hover {
   animation: upanddown 0.25s forwards;
