@@ -31,13 +31,13 @@ function ProjectComments({ project }) {
       <h4>Project Comments</h4>
       <ul>
         {project.comments.map((comment) => (
-          <li>
+          <li key={comment.id}>
             <div className="comment-author">
               <Avatar src={comment.photoURL} />
               <p>{comment.displayName}</p>
             </div>
             <div className="comment-date">
-              <p>Date here</p>
+              <p>{comment.createAt.toDate().toDateString()}</p>
             </div>
             <div className="comment-content">
               <p>{comment.content}</p>

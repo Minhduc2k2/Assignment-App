@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Avatar from "../../../../components/Avatar/Avatar";
+import { useAuthContext } from "../../../../hooks/useAuthContext";
+import { useFireStore } from "../../../../hooks/useFireStore";
 import "./ProjectSummary.css";
 
 function ProjectSummary({ project }) {
+  const { deleteDocument } = useFireStore("projects");
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
+  //! Không cần sử dụng async vì không cần phải đợi xoá xong mới chuyển hướng. Vì xoá xong mới chuyển hướng sẽ gây ra lỗi
+  const handleClick = () => {
+    deleteDocument(project.id);
+    navigate("/");
+  };
   return (
     <div>
       <div className="project-summary">
@@ -19,6 +30,11 @@ function ProjectSummary({ project }) {
           ))}
         </div>
       </div>
+      {user.uid === project.createBy.id && (
+        <button className="btn" onClick={handleClick}>
+          Mark as complete
+        </button>
+      )}
     </div>
   );
 }
