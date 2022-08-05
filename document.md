@@ -35,3 +35,20 @@ useEffect(() => {
   isMulti
 />;
 ```
+
+# date-fns
+
+Provides the most comprehensive, yet simple and consistent toolset
+for manipulating JavaScript dates in a browser & Node.js.
+
+```cmd
+npm install date-fns --save
+```
+
+```js
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+formatDistanceToNow(comment.createAt.toDate(), { addSuffix: true });
+
+// time... ago
+```

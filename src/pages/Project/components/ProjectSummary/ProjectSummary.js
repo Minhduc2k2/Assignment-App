@@ -18,6 +18,10 @@ function ProjectSummary({ project }) {
       <div className="project-summary">
         <h2 className="page-title">{project.name}</h2>
         <p className="due-date">
+          <span>Project is created by</span>
+          <Avatar src={project.createBy.photoURL} />
+        </p>
+        <p className="due-date">
           Project due by {project.dueDate.toDate().toDateString()}
         </p>
         <p className="details">{project.details}</p>

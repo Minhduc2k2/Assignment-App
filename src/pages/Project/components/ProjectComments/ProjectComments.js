@@ -4,7 +4,7 @@ import { useAuthContext } from "../../../../hooks/useAuthContext";
 import { useFireStore } from "../../../../hooks/useFireStore";
 import Avatar from "../../../../components/Avatar/Avatar";
 import "./ProjectComments.css";
-
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 function ProjectComments({ project }) {
   const [newComment, setNewComment] = useState("");
   const { user } = useAuthContext();
@@ -37,7 +37,11 @@ function ProjectComments({ project }) {
               <p>{comment.displayName}</p>
             </div>
             <div className="comment-date">
-              <p>{comment.createAt.toDate().toDateString()}</p>
+              <p>
+                {formatDistanceToNow(comment.createAt.toDate(), {
+                  addSuffix: true,
+                })}
+              </p>
             </div>
             <div className="comment-content">
               <p>{comment.content}</p>

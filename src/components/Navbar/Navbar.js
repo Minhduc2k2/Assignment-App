@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-import Temple from "../../assets/temple.svg";
+import Project from "../../assets/project.svg";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 function Navbar() {
@@ -11,8 +11,8 @@ function Navbar() {
     <div className="navbar">
       <ul>
         <li className="logo">
-          <img src={Temple} alt="Temple" />
-          <span>Dojo</span>
+          <img src={Project} alt="Project" />
+          <span>Assignment App</span>
         </li>
 
         {!user && (
